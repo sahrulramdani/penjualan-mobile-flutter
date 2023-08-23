@@ -152,33 +152,36 @@ class _ModalPenjualanItemState extends State<ModalPenjualanItem> {
   Widget inputTanggalBeli() {
     return SizedBox(
       child: TextFormField(
-        readOnly: widget.cd == 'Detail' ? false : true,
+        readOnly: widget.cd == 'Detail' ? true : false,
         controller: tanggalBeli,
         cursorColor: Colors.white,
         style: const TextStyle(
             fontFamily: 'Gilroy', fontSize: 15, color: Colors.white),
         decoration: fncInputStyle('Tanggal Transaksi'),
         onTap: () async {
-          DateTime pickedDate = await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2000),
-            lastDate: DateTime(2100),
-            builder: (BuildContext context, Widget child) {
-              return Theme(
-                data: ThemeData.dark().copyWith(
-                  primaryColor: myGrey,
-                  colorScheme: const ColorScheme.dark(primary: Colors.blue),
-                  buttonTheme:
-                      const ButtonThemeData(textTheme: ButtonTextTheme.normal),
-                ),
-                child: child,
-              );
-            },
-          );
-          if (pickedDate != null) {
-            String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
-            tanggalBeli.text = formattedDate;
+          if (widget.cd != 'Detail') {
+            DateTime pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2000),
+              lastDate: DateTime(2100),
+              builder: (BuildContext context, Widget child) {
+                return Theme(
+                  data: ThemeData.dark().copyWith(
+                    primaryColor: myGrey,
+                    colorScheme: const ColorScheme.dark(primary: Colors.blue),
+                    buttonTheme: const ButtonThemeData(
+                        textTheme: ButtonTextTheme.normal),
+                  ),
+                  child: child,
+                );
+              },
+            );
+            if (pickedDate != null) {
+              String formattedDate =
+                  DateFormat('dd-MM-yyyy').format(pickedDate);
+              tanggalBeli.text = formattedDate;
+            }
           }
         },
         validator: (tanggalBeli) {
