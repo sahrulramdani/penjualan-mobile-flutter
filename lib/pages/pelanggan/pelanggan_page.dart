@@ -141,7 +141,7 @@ class _PelangganPageState extends State<PelangganPage> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
-                    childAspectRatio: 3 / 5,
+                    childAspectRatio: 3 / 6,
                   ),
                   children: listPelanggan.map((e) {
                     return Container(
@@ -153,7 +153,7 @@ class _PelangganPageState extends State<PelangganPage> {
                         children: [
                           Container(
                             width: screenWidth,
-                            height: 150,
+                            height: 165,
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.vertical(
                                   top: Radius.circular(10)),
